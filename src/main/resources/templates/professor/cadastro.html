@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<head>
+<meta charset="utf-8">
+<title>Projeto Integrador II</title>
+<div th:replace="fragments/header :: header-css"></div>
+<div th:replace="fragments/header :: header-js"></div>
+
+<!-- Bootstrap core CSS -->
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+	rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<div th:replace="fragments/header :: header"></div>
+		<div th:replace="fragments/sidebar :: sidebar"></div>
+		<div class="content-wrapper">
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 class="m-0 text-dark">
+								[Nome da PÃ¡gina] <small>[DescriÃ§Ã£o(Opcional)]</small>
+							</h1>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a href="#">Inicio</a></li>
+								<li class="breadcrumb-item active">PÃ¡gina Modelo</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content">
+				<div class="container-fluid">
+
+					<section class="layout-content" layout:fragment="corpo">
+
+						<nav class="navbar navbar-expand-md bg-light">
+							<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item active"><i class="oi oi-caret-right"></i>
+										<span>Cadastrar Professor</span></li>
+								</ul>
+								<a class="btn btn-primary btn-md" href="/professor/listar"
+									role="button"> <span class="oi oi-spreadsheet"
+									title="Listar" aria-hidden="true"></span> <span>Listar
+										Professores</span>
+								</a>
+							</div>
+						</nav>
+
+						<div class="container" id="cadastro">
+						
+						<div th:replace="fragments/alert"></div>
+
+							<form
+								th:action="${professor.id == null} ? @{/professor/salvar} : @{/professor/editar}"
+								th:object="${professor}" method="POST">
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="nome">Professor</label> <input type="text"
+											class="form-control" id="nome" placeholder="Nome Professor"
+											autofocus="autofocus" th:field="*{nome}" />
+									</div>
+								</div>
+								<input type="hidden" id="id" th:field="*{id}" />
+								<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+							</form>
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</div>
+		<div th:replace="fragments/sidebar :: sidebar-control"></div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+	
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	
+</body>
+</html>
