@@ -3,6 +3,7 @@ package com.unitins.projetointegrador2.service;
 import java.util.List;
 
 import com.unitins.projetointegrador2.model.Proposta;
+import com.unitins.projetointegrador2.model.TIPO;
 
 public interface PropostaService {
 
@@ -22,6 +23,6 @@ public interface PropostaService {
 
 	List<Proposta> buscarPorAluno(String descricao, String aluno);
 	
-	List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma);
+	List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String pesquisarTipo);
 
 }

@@ -3,6 +3,7 @@ package com.unitins.projetointegrador2.repository;
 import java.util.List;
 
 import com.unitins.projetointegrador2.model.Proposta;
+import com.unitins.projetointegrador2.model.TIPO;
 
 public interface PropostaDao {
 	void save(Proposta proposta);
@@ -21,7 +22,7 @@ public interface PropostaDao {
 
 	List<Proposta> findByTeacher(String nome);
 	
-	List<Proposta> findGeneral(String descricao, String aluno, String professor, String turma);
+	List<Proposta> findGeneral(String descricao, String aluno, String professor, String turma, String tipo);
 }
 
 

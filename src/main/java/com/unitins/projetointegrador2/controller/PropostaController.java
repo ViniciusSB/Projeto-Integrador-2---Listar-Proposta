@@ -98,7 +98,8 @@ public class PropostaController {
 	public ModelAndView pesquisar(Model model, @RequestParam("pesquisarDescricao") String pesquisarDescricao, 
 			@RequestParam("pesquisarAluno") String pesquisarAluno, 
 			@RequestParam("pesquisarProfessor") String pesquisarProfessor,
-			@RequestParam("pesquisarTurma") String pesquisarTurma) {
+			@RequestParam("pesquisarTurma") String pesquisarTurma, 
+			@RequestParam(value = "tipo", required = false) String pesquisarTipo) {
 		
 		// carregando os tipos de proposta
 		model.addAttribute("tipo", "adicionarTipo");
@@ -106,7 +107,7 @@ public class PropostaController {
 		model.addAttribute("tipo", TIPO.values());
 		
 		ModelAndView modelAndView = new ModelAndView("/proposta/lista");
-		modelAndView.addObject("propostas", service.buscaGeral(pesquisarDescricao, pesquisarAluno, pesquisarProfessor, pesquisarTurma));
+		modelAndView.addObject("propostas", service.buscaGeral(pesquisarDescricao, pesquisarAluno, pesquisarProfessor, pesquisarTurma, pesquisarTipo));
 		return modelAndView;
 	}
 

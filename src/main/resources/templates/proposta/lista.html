@@ -89,8 +89,8 @@
 										<div class="input-fild col 6">
 											<div th:each="t : ${tipo}">
 												<div class="custom-control custom-radio custom-control-inline">
-													<input type="radio" th:field="*{tipo}"
-														th:value="${t}" class="custom-control-input">
+													<input type="radio" th:field="*{tipo}" name="tipo"
+														th:value="${tipo}" class="custom-control-input">
 													<label class="custom-control-label"
 														th:for="${#ids.prev('tipo')}" th:text="${t.descricao}">model</label>
 												</div>

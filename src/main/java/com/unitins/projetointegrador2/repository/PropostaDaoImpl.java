@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.unitins.projetointegrador2.model.Proposta;
+import com.unitins.projetointegrador2.model.TIPO;
 
 @Repository
 public class PropostaDaoImpl extends AbstractDao<Proposta, Integer> implements PropostaDao {
@@ -30,11 +31,12 @@ public class PropostaDaoImpl extends AbstractDao<Proposta, Integer> implements P
 	}
 
 	@Override
-	public List<Proposta> findGeneral(String descricao, String aluno, String professor, String turma) {
+	public List<Proposta> findGeneral(String descricao, String aluno, String professor, String turma, String tipo) {
 		return createQuery("Select p From Proposta p Where upper(p.descricao) like concat('%',upper(?1), '%') and "
 				+ "upper(p.aluno.nome) like concat('%',upper(?2), '%') and "
 				+ "upper(p.professor.nome) like concat('%',upper(?3), '%') and "
-				+ "upper(p.aluno.turma.descricao) like concat('%',upper(?4), '%')", descricao, aluno, professor, turma);
+				+ "upper(p.aluno.turma.descricao) like concat('%',upper(?4), '%') and "
+				+ "p.tipo.descricao = ?5", descricao, aluno, professor, turma, tipo);
 	}
 
 }

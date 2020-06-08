@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unitins.projetointegrador2.model.Proposta;
+import com.unitins.projetointegrador2.model.TIPO;
 import com.unitins.projetointegrador2.repository.PropostaDao;
 
 @Repository
@@ -59,8 +60,8 @@ public class PropostaServiceImpl implements PropostaService {
 	}
 
 	@Override
-	public List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma) {
-		return dao.findGeneral(descricao, aluno, professor, turma);
+	public List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String tipo) {
+		return dao.findGeneral(descricao, aluno, professor, turma, tipo);
 	}
 
 }
