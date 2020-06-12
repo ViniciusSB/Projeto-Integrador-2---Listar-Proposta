@@ -14,4 +14,6 @@ public enum TIPO {
     public String getDescricao() {
         return descricao;
     }
+    
+    
 }

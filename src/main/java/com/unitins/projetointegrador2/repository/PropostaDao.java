@@ -23,6 +23,8 @@ public interface PropostaDao {
 	List<Proposta> findByTeacher(String nome);
 	
 	List<Proposta> findGeneral(String descricao, String aluno, String professor, String turma, String tipo);
+	
+	List<Proposta> findWithoutTipo(String descricao, String aluno, String professor, String turma);
 }
 
 

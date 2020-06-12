@@ -23,6 +23,8 @@ public interface PropostaService {
 
 	List<Proposta> buscarPorAluno(String descricao, String aluno);
 	
-	List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String pesquisarTipo);
+	List<Proposta> buscaSemTipo(String descricao, String aluno, String professor, String turma);
+	
+	List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String tipo);
 
 }

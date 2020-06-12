@@ -36,7 +36,15 @@ public class PropostaDaoImpl extends AbstractDao<Proposta, Integer> implements P
 				+ "upper(p.aluno.nome) like concat('%',upper(?2), '%') and "
 				+ "upper(p.professor.nome) like concat('%',upper(?3), '%') and "
 				+ "upper(p.aluno.turma.descricao) like concat('%',upper(?4), '%') and "
-				+ "p.tipo.descricao = ?5", descricao, aluno, professor, turma, tipo);
+				+ "p.tipo = upper(?5)", descricao, aluno, professor, turma, tipo);
+	}
+
+	@Override
+	public List<Proposta> findWithoutTipo(String descricao, String aluno, String professor, String turma) {
+		return createQuery("Select p From Proposta p Where upper(p.descricao) like concat('%',upper(?1), '%') and "
+				+ "upper(p.aluno.nome) like concat('%',upper(?2), '%') and "
+				+ "upper(p.professor.nome) like concat('%',upper(?3), '%') and "
+				+ "upper(p.aluno.turma.descricao) like concat('%',upper(?4), '%')", descricao, aluno, professor, turma);
 	}
 
 }

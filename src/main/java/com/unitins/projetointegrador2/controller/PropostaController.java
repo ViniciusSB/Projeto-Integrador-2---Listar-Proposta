@@ -106,8 +106,14 @@ public class PropostaController {
 		model.addAttribute(new Proposta());
 		model.addAttribute("tipo", TIPO.values());
 		
+		
 		ModelAndView modelAndView = new ModelAndView("/proposta/lista");
-		modelAndView.addObject("propostas", service.buscaGeral(pesquisarDescricao, pesquisarAluno, pesquisarProfessor, pesquisarTurma, pesquisarTipo));
+		if (pesquisarTipo == null) {
+			modelAndView.addObject("propostas", service.buscaSemTipo(pesquisarDescricao, pesquisarAluno, pesquisarProfessor, pesquisarTurma));
+		} else {
+			modelAndView.addObject("propostas", service.buscaGeral(pesquisarDescricao, pesquisarAluno, pesquisarProfessor, pesquisarTurma, pesquisarTipo));
+		}
+	
 		return modelAndView;
 	}
 

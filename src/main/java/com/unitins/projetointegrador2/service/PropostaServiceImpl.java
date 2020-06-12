@@ -64,4 +64,9 @@ public class PropostaServiceImpl implements PropostaService {
 		return dao.findGeneral(descricao, aluno, professor, turma, tipo);
 	}
 
+	@Override
+	public List<Proposta> buscaSemTipo(String descricao, String aluno, String professor, String turma) {
+		return dao.findWithoutTipo(descricao, aluno, professor, turma);
+	}
+
 }
