@@ -3,6 +3,7 @@ package com.unitins.projetointegrador2.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -45,6 +46,33 @@ public class PropostaDaoImpl extends AbstractDao<Proposta, Integer> implements P
 				+ "upper(p.aluno.nome) like concat('%',upper(?2), '%') and "
 				+ "upper(p.professor.nome) like concat('%',upper(?3), '%') and "
 				+ "upper(p.aluno.turma.descricao) like concat('%',upper(?4), '%')", descricao, aluno, professor, turma);
+	}
+
+	@Override
+	public List<Proposta> findByDataInicioDataFim(LocalDate inicio, LocalDate fim) {
+		String jpql = new StringBuilder("select p from Proposta p ")
+				.append("where p.dataInicio >= ?1 and p.dataFim <= ?2 ")
+				.append("order by p.dataInicio asc")
+				.toString();
+		return createQuery(jpql, inicio, fim);
+	}
+
+	@Override
+	public List<Proposta> findByDataInicio(LocalDate inicio) {
+		String jpql = new StringBuilder("select p from Proposta p ")
+				.append("where p.dataInicio >= ?1 ")
+				.append("order by p.dataInicio asc")
+				.toString();
+		return createQuery(jpql, inicio);
+	}
+
+	@Override
+	public List<Proposta> findByDataFim(LocalDate fim) {
+		String jpql = new StringBuilder("select p from Proposta p ")
+				.append("where p.dataFim >= ?1 ")
+				.append("order by p.dataInicio asc")
+				.toString();
+		return createQuery(jpql, fim);
 	}
 
 }

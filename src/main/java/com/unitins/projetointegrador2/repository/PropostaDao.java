@@ -1,5 +1,6 @@
 package com.unitins.projetointegrador2.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.unitins.projetointegrador2.model.Proposta;
@@ -25,6 +26,12 @@ public interface PropostaDao {
 	List<Proposta> findGeneral(String descricao, String aluno, String professor, String turma, String tipo);
 	
 	List<Proposta> findWithoutTipo(String descricao, String aluno, String professor, String turma);
+
+    List<Proposta> findByDataInicioDataFim(LocalDate inicio, LocalDate fim);
+
+	List<Proposta> findByDataInicio(LocalDate inicio);
+
+	List<Proposta> findByDataFim(LocalDate fim);
 }
 
 

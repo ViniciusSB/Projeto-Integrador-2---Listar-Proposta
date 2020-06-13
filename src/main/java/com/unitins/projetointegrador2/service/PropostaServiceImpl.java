@@ -1,5 +1,7 @@
 package com.unitins.projetointegrador2.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,19 @@ public class PropostaServiceImpl implements PropostaService {
 	@Override
 	public List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String tipo) {
 		return dao.findGeneral(descricao, aluno, professor, turma, tipo);
+	}
+
+	@Override
+	public List<Proposta> buscaPorDatas(LocalDate inicio, LocalDate fim) {
+		if (inicio != null && fim != null){
+			return dao.findByDataInicioDataFim(inicio, fim);
+		}else if (inicio != null){
+			return dao.findByDataInicio(inicio);
+		}else if (fim != null){
+			return dao.findByDataFim(fim);
+		}else {
+			return new ArrayList<>();
+		}
 	}
 
 	@Override

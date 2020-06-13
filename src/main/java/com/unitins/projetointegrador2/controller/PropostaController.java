@@ -1,9 +1,11 @@
 package com.unitins.projetointegrador2.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -91,6 +93,14 @@ public class PropostaController {
 	@GetMapping("/buscar/professor")
 	public String getPorProfessor(@RequestParam("professor") String nome, ModelMap model) {
 		model.addAttribute("propostas", service.buscarPorProfessor(nome));
+		return "/proposta/lista";
+	}
+
+	@GetMapping("/buscar/data")
+	public String getPorDatas(@RequestParam("inicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+							  @RequestParam("fim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim,
+							  ModelMap model) {
+		model.addAttribute("propostas", service.buscaPorDatas(inicio, fim));
 		return "/proposta/lista";
 	}
 

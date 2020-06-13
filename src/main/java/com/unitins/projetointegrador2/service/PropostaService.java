@@ -1,5 +1,6 @@
 package com.unitins.projetointegrador2.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.unitins.projetointegrador2.model.Proposta;
@@ -27,4 +28,5 @@ public interface PropostaService {
 	
 	List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String tipo);
 
+	List<Proposta> buscaPorDatas(LocalDate inicio, LocalDate fim);
 }
