@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.unitins.projetointegrador2.model.Proposta;
-import com.unitins.projetointegrador2.model.TIPO;
 
 public interface PropostaDao {
 	void save(Proposta proposta);
@@ -16,22 +15,29 @@ public interface PropostaDao {
 	Proposta findById(Integer id);
 
 	List<Proposta> findAll();
-
-	List<Proposta> finByNome(String nome);
-
-	List<Proposta> finByStudent(String descricao, String aluno);
-
-	List<Proposta> findByTeacher(String nome);
 	
-	List<Proposta> findGeneral(String descricao, String aluno, String professor, String turma, String tipo);
+	List<Proposta> findGeneral(String descricao, String aluno, String professor, String turma, String tipo, LocalDate dataInicio,
+			LocalDate dataFim);
 	
-	List<Proposta> findWithoutTipo(String descricao, String aluno, String professor, String turma);
+	List<Proposta> findGeneralWithoutDatas(String descricao, String aluno, String professor, String turma,
+			String tipo);
 
-    List<Proposta> findByDataInicioDataFim(LocalDate inicio, LocalDate fim);
+	List<Proposta> findGeneralWithoutDataFim(String descricao, String aluno, String professor, String turma, String tipo,
+			LocalDate dataInicio);
+	
+	List<Proposta> findGeneralWithoutDataInicio(String descricao, String aluno, String professor, String turma, String tipo, 
+			LocalDate dataFim);
+	
+	List<Proposta> findWithoutTipo(String descricao, String aluno, String professor, String turma, LocalDate dataInicio,
+			LocalDate dataFim);
+	
+	List<Proposta> findWithoutTipoAndDataFim(String descricao, String aluno, String professor, String turma,
+			LocalDate dataInicio);
 
-	List<Proposta> findByDataInicio(LocalDate inicio);
-
-	List<Proposta> findByDataFim(LocalDate fim);
+	List<Proposta> findWithoutTipoAndDataInicio(String descricao, String aluno, String professor, String turma,
+			LocalDate dataFim);
+	
+	List<Proposta> findWithoutTipoAndDatas(String descricao, String aluno, String professor, String turma);
 }
 
 

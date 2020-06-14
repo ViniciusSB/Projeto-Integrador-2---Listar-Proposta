@@ -1,7 +1,6 @@
 package com.unitins.projetointegrador2.service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unitins.projetointegrador2.model.Proposta;
-import com.unitins.projetointegrador2.model.TIPO;
 import com.unitins.projetointegrador2.repository.PropostaDao;
 
 @Repository
@@ -47,41 +45,34 @@ public class PropostaServiceImpl implements PropostaService {
 	}
 
 	@Override
-	public List<Proposta> buscarPorTitulo(String nome) {
-		return dao.finByNome(nome);
-	}
-
-	@Override
-	public List<Proposta> buscarPorProfessor(String nome) {
-		return dao.findByTeacher(nome);
-	}
-
-	@Override
-	public List<Proposta> buscarPorAluno(String descricao, String aluno) {
-		return dao.finByStudent(descricao, aluno);
-	}
-
-	@Override
-	public List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String tipo) {
-		return dao.findGeneral(descricao, aluno, professor, turma, tipo);
-	}
-
-	@Override
-	public List<Proposta> buscaPorDatas(LocalDate inicio, LocalDate fim) {
-		if (inicio != null && fim != null){
-			return dao.findByDataInicioDataFim(inicio, fim);
-		}else if (inicio != null){
-			return dao.findByDataInicio(inicio);
-		}else if (fim != null){
-			return dao.findByDataFim(fim);
+	public List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String tipo,
+			LocalDate dataInicio, LocalDate dataFim) {
+		
+		if (dataInicio == null && dataFim == null){
+			return dao.findGeneralWithoutDatas(descricao, aluno, professor, turma, tipo);
+		} else if (dataInicio != null && dataFim != null) {
+			return dao.findGeneral(descricao, aluno, professor, turma, tipo, dataInicio, dataFim);
+		}else if (dataInicio != null){
+			return dao.findGeneralWithoutDataFim(descricao, aluno, professor, turma, tipo, dataInicio);
 		}else {
-			return new ArrayList<>();
+			return dao.findGeneralWithoutDataInicio(descricao, aluno, professor, turma, tipo, dataFim);
 		}
 	}
 
 	@Override
-	public List<Proposta> buscaSemTipo(String descricao, String aluno, String professor, String turma) {
-		return dao.findWithoutTipo(descricao, aluno, professor, turma);
+	public List<Proposta> buscaSemTipo(String descricao, String aluno, String professor, String turma, 
+			LocalDate dataInicio, LocalDate dataFim) {
+		if (dataInicio == null && dataFim == null){
+			return dao.findWithoutTipoAndDatas(descricao, aluno, professor, turma);
+		} else if (dataInicio != null && dataFim != null) {
+			return dao.findWithoutTipo(descricao, aluno, professor, turma, dataInicio, dataFim);
+		}else if (dataInicio != null){
+			return dao.findWithoutTipoAndDataFim(descricao, aluno, professor, turma, dataInicio);
+		}else {
+			return dao.findWithoutTipoAndDataInicio(descricao, aluno, professor, turma, dataFim);
+		}
+		
 	}
+
 
 }

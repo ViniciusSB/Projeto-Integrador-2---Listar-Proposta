@@ -84,6 +84,19 @@
 										</div>
 
 									</div>
+									
+									<div class="row">
+										<div class="input-fild col 3">
+											<label for="dataInicio">Data Inicio</label>
+											<input type="date" class="form-control" id="dataInicio" name="dataInicio"/>
+											<div class="invalid-feedback"></div>
+										</div>
+										<div class="input-fild col 3">
+											<label for="dataFim">Data Fim</label>
+											<input type="date" class="form-control" id="dataFim" name="dataFim"/>
+											<div class="invalid-feedback"></div>
+										</div>
+									</div>
 
 									<div class="row">
 										<div class="input-fild col 6">
@@ -121,6 +134,8 @@
 											<th>Aluno</th>
 											<th>Professor Orientador</th>
 											<th>Turma</th>
+											<th>Data Inicio</th>
+											<th>Data Fim</th>											
 											<th>Tipo</th>
 											<th>Status</th>
 											<th>Ações</th>
@@ -133,6 +148,8 @@
 											<td th:text="${p.aluno.nome}">Richard</td>
 											<td th:text="${p.professor.nome}">George</td>
 											<td th:text="${p.aluno.turma.descricao}">SI 2018-1</td>
+											<td th:text="${#temporals.format(p.dataInicio,'dd-MM-yyyy')}"></td>
+											<td th:text="${#temporals.format(p.dataFim,'dd-MM-yyyy')}"></td>
 											<td th:text="${p.tipo.descricao}">TCC</td>
 											<td th:text="${p.status.descricao}">Ativo</td>
 											<td colspan="2"><a class="btn btn-info btn-sm"

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.unitins.projetointegrador2.model.Proposta;
-import com.unitins.projetointegrador2.model.TIPO;
 
 public interface PropostaService {
 
@@ -17,16 +16,11 @@ public interface PropostaService {
 	Proposta buscarPorId(Integer id);
 
 	List<Proposta> buscarTodos();
-
-	List<Proposta> buscarPorTitulo(String nome);
-
-	List<Proposta> buscarPorProfessor(String nome);
-
-	List<Proposta> buscarPorAluno(String descricao, String aluno);
 	
-	List<Proposta> buscaSemTipo(String descricao, String aluno, String professor, String turma);
+	List<Proposta> buscaSemTipo(String descricao, String aluno, String professor, String turma,
+			LocalDate dataInicio, LocalDate dataFim);
 	
-	List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String tipo);
+	List<Proposta> buscaGeral(String descricao, String aluno, String professor, String turma, String tipo,
+			LocalDate dataInicio, LocalDate dataFim);
 
-	List<Proposta> buscaPorDatas(LocalDate inicio, LocalDate fim);
 }
